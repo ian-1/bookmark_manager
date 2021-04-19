@@ -1,2 +1,2 @@
-<a href="http://makers.tech"> Makers
-</a>
+<% @list.each{|bookmark| %><a href=<%=bookmark.url%>> <%=bookmark.name%>
+</a> <%}%>
