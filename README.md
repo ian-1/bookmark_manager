@@ -18,5 +18,5 @@ I want to see a list of bookmarks
 | -------- | ------ |
 | Bookmark | list   |
 
-![Bookmark Manager domain model] (https://github.com/makersacademy/course/blob/master/bookmark_manager/images/bookmark_manager_1.png)
+![Bookmark Manager domain model](https://github.com/makersacademy/course/blob/master/bookmark_manager/images/bookmark_manager_1.png)
 
