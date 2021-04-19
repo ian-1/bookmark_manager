@@ -20,3 +20,10 @@ I want to see a list of bookmarks
 
 ![Bookmark Manager domain model](https://github.com/makersacademy/course/blob/master/bookmark_manager/images/bookmark_manager_1.png)
 
+## Connect to database
+
+1. Connect to `psql`
+2. Create the database using the `psql` command `CREATE DATABASE bookmark_manager;`
+3. Connect to the database using the `pqsl` command `\c bookmark_manager;`
+4. Run the query in file: `db/migrations/01_create_bookmarks_table.sql`
+
