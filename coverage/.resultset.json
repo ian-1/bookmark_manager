@@ -1,12 +1,20 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/ianwalton/projects/challenges/bookmark_manager/app.rb": {
+      "/Users/tiago/Desktop/Projects/bookmark_manager/app.rb": {
         "lines": [
           1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          0,
           null,
           null,
           1,
+          2,
+          null,
           null,
           1,
           1,
@@ -16,7 +24,19 @@
           null
         ]
       },
-      "/Users/ianwalton/projects/challenges/bookmark_manager/spec/features/index_spec.rb": {
+      "/Users/tiago/Desktop/Projects/bookmark_manager/spec/features/bookmarks_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/tiago/Desktop/Projects/bookmark_manager/spec/features/index_spec.rb": {
         "lines": [
           1,
           1,
@@ -27,6 +47,6 @@
         ]
       }
     },
-    "timestamp": 1618838283
+    "timestamp": 1618840900
   }
 }
