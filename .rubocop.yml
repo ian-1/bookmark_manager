@@ -1,0 +1,15 @@
+# Increase maximum method length
+Metrics/MethodLength: 
+  Max: 20
+
+# Disable frozen string literal comment check
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Disable top-level class documentation comment check
+Style/Documentation:
+  Enabled: false
+
+# Allow use of numerical digits in variable names
+Naming/VariableNumber:
+  Enabled: false
