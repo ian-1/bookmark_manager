@@ -11,11 +11,19 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/bookmarks' do
-    @list1 = Bookmark.new('Makers', 'http://makers.tech')
-    @list2 = Bookmark.new('Makers', 'http://makers.tech')
-    @list3 = Bookmark.new('Makers', 'http://makers.tech')
-    @list = [@list1, @list2, @list3]
+    @list = Bookmark.list
     erb :bookmarks
+  end
+
+  get '/bookmarks/add' do
+    erb :bookmarks_add
+  end
+
+  post '/bookmarks' do
+    url = params[:URL]
+    connection = PG.connect(dbname: 'bookmark_manager_test')
+    connection.exec("INSERT INTO bookmarks (url) VALUES ('#{url}');")
+    redirect '/'
   end
 
   run! if app_file == $PROGRAM_NAME

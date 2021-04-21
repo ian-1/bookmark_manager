@@ -26,4 +26,9 @@ I want to see a list of bookmarks
 2. Create the database using the `psql` command `CREATE DATABASE bookmark_manager;`
 3. Connect to the database using the `pqsl` command `\c bookmark_manager;`
 4. Run the query in file: `db/migrations/01_create_bookmarks_table.sql`
-
+5. Also the following to create test database:
+```sql
+CREATE DATABASE "bookmark_manager_test";
+\c bookmark_manager_test;
+CREATE TABLE bookmarks(id SERIAL PRIMARY KEY, url VARCHAR(60));
+```
