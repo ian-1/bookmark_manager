@@ -1,9 +1,10 @@
 require 'pg'
 
 class Bookmark
-  attr_reader :title, :url
+  attr_reader :id, :title, :url
 
-  def initialize(title, url)
+  def initialize(id, title, url)
+    @id = id
     @title = title
     @url = url
   end
@@ -12,12 +13,17 @@ class Bookmark
     def list
       result = psql('SELECT * FROM bookmarks;')
       result.map do |bookmark|
-        Bookmark.new(bookmark['title'], bookmark['url'])
+        p bookmark
+        Bookmark.new(bookmark['id'], bookmark['title'], bookmark['url'])
       end
     end
 
     def create(title, url)
       psql("INSERT INTO bookmarks (title, url) VALUES ('#{title}', '#{url}');")
+    end
+
+    def delete(id)
+      psql("DELETE FROM bookmarks WHERE id = #{id}")
     end
 
     private

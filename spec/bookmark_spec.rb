@@ -1,7 +1,13 @@
 require 'bookmark'
 
 describe Bookmark do
-  subject(:bookmark) { described_class.new('Makers', 'http://makers.tech') }
+  subject(:bookmark) { described_class.new(101, 'Makers', 'http://makers.tech') }
+
+  describe '#id' do
+    it 'return the id' do
+      expect(bookmark.id).to eq 101
+    end
+  end
 
   describe '#title' do
     it 'return the title' do
@@ -27,6 +33,15 @@ describe Bookmark do
     end
   end
 
+  describe '.delete' do
+    it 'deletes bookmark' do
+      described_class.create('New URL', 'http://bookmarked-url.co.gb')
+      id = described_class.list[-1].id
+      described_class.delete(id)
+      expect(described_class.list).to be_empty
+    end
+  end
+
   describe '.list' do
     it 'returns a list of bookmarks' do
       connection = PG.connect(dbname: 'bookmark_manager_test')
@@ -37,7 +52,7 @@ describe Bookmark do
       connection.exec("INSERT INTO bookmarks (url) VALUES('http://www.destroyallsoftware.com');")
 
       bookmarks = described_class.list
-      expect(bookmarks[-1].url).to include('http://www.destroyallsoftware.com')
+      expect(bookmarks[-1].url).to eq('http://www.destroyallsoftware.com')
     end
   end
 end
