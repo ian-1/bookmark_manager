@@ -4,7 +4,7 @@ feature 'Bookmarks' do
 
     # Add the test data
     connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.makersacademy.com');")
-    
+
     visit '/'
     click_button 'Bookmarks'
     expect(page).to have_content('http://www.makersacademy.com')

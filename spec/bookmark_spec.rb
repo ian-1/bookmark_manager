@@ -15,11 +15,11 @@ describe Bookmark do
     end
   end
 
-  describe '.update' do
-    # it 'updates list' do
-    #   described_class.update_list(bookmark)
-    #   expect(described_class.list).to include 'http://www.makersacademy.com'
-    # end
+  describe '.create' do
+    it 'creates bookmark' do
+      described_class.create('http://bookmarked-url.co.gb')
+      expect(described_class.list).to include 'http://bookmarked-url.co.gb'
+    end
   end
 
   describe '.list' do
@@ -30,11 +30,9 @@ describe Bookmark do
       connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.makersacademy.com');")
       connection.exec("INSERT INTO bookmarks (url) VALUES('http://www.destroyallsoftware.com');")
       connection.exec("INSERT INTO bookmarks (url) VALUES('http://www.google.com');")
-  
-      bookmarks = Bookmark.list
-      expect(bookmarks).to include('http://www.makersacademy.com')
+
+      bookmarks = described_class.list
       expect(bookmarks).to include('http://www.destroyallsoftware.com')
-      expect(bookmarks).to include('http://www.google.com')
     end
   end
 end

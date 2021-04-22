@@ -1,3 +1,9 @@
+require: rubocop-rspec
+
+# opt in to new cops
+AllCops:
+  NewCops: enable
+
 # Increase maximum method length
 Metrics/MethodLength: 
   Max: 20
@@ -13,3 +19,16 @@ Style/Documentation:
 # Allow use of numerical digits in variable names
 Naming/VariableNumber:
   Enabled: false
+
+# Allow use of Capybara-specific method names
+RSpec/Capybara/FeatureMethods:
+  Enabled: false
+
+# Increase maximum rspec example length
+RSpec/ExampleLength:
+  Max: 10
+
+# Don't restrict length of rspec describe blocks
+Metrics/BlockLength:
+  IgnoredMethods:
+    - describe

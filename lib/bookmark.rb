@@ -1,7 +1,6 @@
 require 'pg'
 
 class Bookmark
-  @list = []
   attr_reader :name, :url
 
   def initialize(name, url)
@@ -9,18 +8,32 @@ class Bookmark
     @url = url
   end
 
-  def self.list
-    if ENV['RACK_ENV'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      connection = PG.connect(dbname: 'bookmark_manager')
+  class << self
+    def list
+      result = psql('SELECT * FROM bookmarks;')
+      result.map { |bookmark| bookmark['url'] }
     end
 
-    result = connection.exec("SELECT * FROM bookmarks;")
-    result.map { |bookmark| bookmark['url'] }
-  end
+    def create(url)
+      psql("INSERT INTO bookmarks (url) VALUES ('#{url}');")
+    end
 
-  # def self.update_list(bookmark)
-  #   @list << bookmark
-  # end
+    private
+
+    def psql(psql_command)
+      connection.exec(psql_command)
+    end
+
+    def connection
+      PG.connect(dbname: database)
+    end
+
+    def database
+      test_environment? ? 'bookmark_manager_test' : 'bookmark_manager'
+    end
+
+    def test_environment?
+      ENV['RACK_ENV'] == 'test'
+    end
+  end
 end

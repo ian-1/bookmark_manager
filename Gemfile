@@ -8,6 +8,7 @@ group :test do
   gem 'capybara'
   gem 'rspec'
   gem 'rubocop'
+  gem 'rubocop-rspec', require: false
 end
 gem 'pg'
 gem 'simplecov', require: false
