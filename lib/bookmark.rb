@@ -9,13 +9,23 @@ class Bookmark
     @url = url
   end
 
+  def update(new_values)
+    new_values.each do |key, value|
+      Bookmark.psql("UPDATE bookmarks SET #{key} = '#{value}' WHERE id = #{@id};") unless value == ''
+    end
+  end
+
   class << self
     def list
       result = psql('SELECT * FROM bookmarks;')
       result.map do |bookmark|
-        p bookmark
         Bookmark.new(bookmark['id'], bookmark['title'], bookmark['url'])
       end
+    end
+
+    def find_bookmark(id)
+      bookmark = psql("SELECT * FROM bookmarks WHERE id = #{id};")
+      Bookmark.new(bookmark[0]['id'], bookmark[0]['title'], bookmark[0]['url'])
     end
 
     def create(title, url)
@@ -25,8 +35,6 @@ class Bookmark
     def delete(id)
       psql("DELETE FROM bookmarks WHERE id = #{id}")
     end
-
-    private
 
     def psql(psql_command)
       connection.exec(psql_command)

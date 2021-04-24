@@ -33,6 +33,40 @@ describe Bookmark do
     end
   end
 
+  describe '#update' do
+    it 'updates bookmark title' do
+      described_class.create('New URL', 'http://bookmarked-url.co.gb')
+      bookmark = described_class.list[-1]
+      bookmark.update({ title: 'Newer URL', url: '' })
+      expect(described_class.list[-1].title).to eq('Newer URL')
+      expect(described_class.list[-1].url).to eq('http://bookmarked-url.co.gb')
+    end
+
+    it 'updates bookmark url' do
+      described_class.create('New URL', 'http://bookmarked-url.co.gb')
+      bookmark = described_class.list[-1]
+      bookmark.update({ title: '', url: 'http://better-url.co.gb' })
+      expect(described_class.list[-1].title).to eq('New URL')
+      expect(described_class.list[-1].url).to eq('http://better-url.co.gb')
+    end
+
+    it 'updates bookmark title and url' do
+      described_class.create('New URL', 'http://bookmarked-url.co.gb')
+      bookmark = described_class.list[-1]
+      bookmark.update({ title: 'Newer URL', url: 'http://better-url.co.gb' })
+      expect(described_class.list[-1].title).to eq('Newer URL')
+      expect(described_class.list[-1].url).to eq('http://better-url.co.gb')
+    end
+  end
+
+  describe '.find_bookmark' do
+    it 'finds bookmark' do
+      described_class.create('New URL', 'http://bookmarked-url.co.gb')
+      bookmark = described_class.list[-1]
+      expect(described_class.find_bookmark(bookmark.id).id).to eq(bookmark.id)
+    end
+  end
+
   describe '.delete' do
     it 'deletes bookmark' do
       described_class.create('New URL', 'http://bookmarked-url.co.gb')
