@@ -37,7 +37,7 @@ describe Bookmark do
     it 'updates bookmark title' do
       described_class.create('New URL', 'http://bookmarked-url.co.gb')
       bookmark = described_class.list[-1]
-      bookmark.update({ title: 'Newer URL', url: '' })
+      bookmark.update(title: 'Newer URL', url: '')
       expect(described_class.list[-1].title).to eq('Newer URL')
       expect(described_class.list[-1].url).to eq('http://bookmarked-url.co.gb')
     end
@@ -45,7 +45,7 @@ describe Bookmark do
     it 'updates bookmark url' do
       described_class.create('New URL', 'http://bookmarked-url.co.gb')
       bookmark = described_class.list[-1]
-      bookmark.update({ title: '', url: 'http://better-url.co.gb' })
+      bookmark.update(title: '', url: 'http://better-url.co.gb')
       expect(described_class.list[-1].title).to eq('New URL')
       expect(described_class.list[-1].url).to eq('http://better-url.co.gb')
     end
@@ -53,7 +53,7 @@ describe Bookmark do
     it 'updates bookmark title and url' do
       described_class.create('New URL', 'http://bookmarked-url.co.gb')
       bookmark = described_class.list[-1]
-      bookmark.update({ title: 'Newer URL', url: 'http://better-url.co.gb' })
+      bookmark.update(title: 'Newer URL', url: 'http://better-url.co.gb')
       expect(described_class.list[-1].title).to eq('Newer URL')
       expect(described_class.list[-1].url).to eq('http://better-url.co.gb')
     end
@@ -82,8 +82,8 @@ describe Bookmark do
 
       # Add the test data
       connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.makersacademy.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES('http://www.google.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES('http://www.destroyallsoftware.com');")
+      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.google.com');")
+      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.destroyallsoftware.com');")
 
       bookmarks = described_class.list
       expect(bookmarks[-1].url).to eq('http://www.destroyallsoftware.com')

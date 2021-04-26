@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require './lib/bookmark'
+require_relative 'lib/bookmark'
+require_relative 'database_connection_setup'
+
 class BookmarkManager < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
@@ -44,7 +46,7 @@ class BookmarkManager < Sinatra::Base
     @new_title = params[:Title]
     @new_url = params[:url]
     bookmark = Bookmark.find_bookmark(@id)
-    bookmark.update({ title: @new_title, url: @new_url })
+    bookmark.update(title: @new_title, url: @new_url)
     redirect '/bookmarks'
   end
 

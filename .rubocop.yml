@@ -30,7 +30,7 @@ RSpec/ExampleLength:
 
 # allow tests to have multiple expectations (needed for scenario tests)
 RSpec/MultipleExpectations:
-   Max: 5
+   Max: 3
   
 # Don't restrict length of rspec blocks
 Metrics/BlockLength:

@@ -1,4 +1,5 @@
-require 'pg'
+require 'pg' # soon to go
+require_relative 'database_connection'
 
 class Bookmark
   attr_reader :id, :title, :url
@@ -17,7 +18,7 @@ class Bookmark
 
   class << self
     def list
-      result = psql('SELECT * FROM bookmarks;')
+      result = DatabaseConnection.query('SELECT * FROM bookmarks;')
       result.map do |bookmark|
         Bookmark.new(bookmark['id'], bookmark['title'], bookmark['url'])
       end

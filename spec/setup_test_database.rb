@@ -1,7 +1,6 @@
 require 'pg'
 
-p 'Setting up test database...'
-
+p 'setup_test_database found'
 def setup_test_database
   connection = PG.connect(dbname: 'bookmark_manager_test')
 
